@@ -22,9 +22,19 @@
     
 </body>
 <script>
-    const parent = document.querySelector('parent')
-    console.log(parent)
-    console.log(parent.childern);
+    let parentclass = document.querySelector('.parent')
+    // console.log(parentclass)
+    // console.log(parentclass.children)
+    // console.log(parentclass.children[2].innerHTML)
+
+    // for(let i=0; i<parentclass.children.length;i++){
+    //     console.log(parentclass.children[i].innerHTML)
+    // }
+
+    parentclass.children[1].style.color = 'red'
+    console.log(parentclass.firstElementChild)
+    console.log(parentclass.lastElementChild)
+    
 
 </script>
 </html>
