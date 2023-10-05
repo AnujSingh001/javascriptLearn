@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: #313131;
+            color: #fff;
+        }
+        button{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Chai aur JavaScript</h1>
+    <button id="stop">Stop</button>
+    <button id="start"> Start</button>
+    
+</body>
+<script>
+    const consoledate = (str)=>{
+        console.log(str, new Date().toLocaleTimeString('en-IN'))
+    }
+    //const intervalId = setInterval(consoledate,1000,"hi Anuj time is")
+    let intervalId;
+    document.querySelector("#start").addEventListener('click',()=>{
+        intervalId = setInterval(consoledate,1000,"hi Anuj time is")
+
+    })
+
+    document.querySelector("#stop").addEventListener('click',()=>{
+       clearInterval(intervalId)
+    })
+    //clearInterval(intervalId)
+   
+
+
+
+</script>
+</html>
