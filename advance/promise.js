@@ -1,29 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="background-color: #212121;">
-    0	UNSENT	Client has been created. open() not called yet.
-1	OPENED	open() has been called.
-2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
-3	LOADING	Downloading; responseText holds partial data.
-4	DONE	The operation is complete.
-</body>
-<script>
-    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', requestUrl)
-    xhr.onreadystatechange = function(){
-        console.log(xhr.readyState);
-        if (xhr.readyState === 4) {
-            const data = JSON.parse(this.responseText)
-            console.log(typeof data);
-            console.log(data.followers);
+const promise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        console.log("Async task is complete")
+        resolve()
+    },1000)
+})
+
+promise.then(()=>{
+    console.log("promise conumed")
+})
+
+new Promise((resolve, reject)=>{
+    setTimeout(() =>{
+        console.log("Async task 2")
+        resolve()
+    },1000)
+}).then(() =>{
+    console.log("promise 2 consumed")
+})
+
+const promise3 = new Promise((resolve, reject) =>{
+    setTimeout(()=>{
+        resolve({username: "Anuj", email:"anujbudhwar@gmail.com"})
+    },1000)
+})
+
+promise3.then((user)=>{
+    console.log(user)
+})
+
+const promise4 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        let error = false
+        if(!error){
+            resolve({username: "Anuj", email:"anujbudhwar@gmail.com"})
+        }else{
+            reject("Error : Something went wrong")
         }
+    },1000)
+})
+
+promise4.then((user)=>{
+    console.log(user)
+    return user.username
+}).then((username)=>{
+    console.log(username)
+}).catch((err)=>{
+    console.log(err)
+}).finally(()=>{
+    console.log("the promise is either resolve or rejected")
+})
+
+const promise5 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        let error = true
+        if(!error){
+            resolve({username: "Anuj", email:"anujbudhwar@gmail.com"})
+        }else{
+            reject("Error : Js went wrong")
+        }
+    },1000)
+})
+
+
+async function consumePromiseFive(){
+    
+    try {
+        const response = await promise5
+        console.log(response)
+    } catch (error) {
+        console.log(error)
     }
-    xhr.send();
-</script>
-</html>
+}
+
+consumePromiseFive()
+
+ async function getAllUsers(){
+
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com.users")
+     const data = response.json()
+    console.log(data)
+    } catch (error) {
+        console.log("Error")
+    }
+     
+ }
+
+getAllUsers()
