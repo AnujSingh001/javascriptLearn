@@ -74,16 +74,30 @@ async function consumePromiseFive(){
 
 consumePromiseFive()
 
- async function getAllUsers(){
+//  async function getAllUsers(){
 
-    try {
-        const response = await fetch("https://jsonplaceholder.typicode.com.users")
-     const data = response.json()
-    console.log(data)
-    } catch (error) {
-        console.log("Error")
-    }
+//     try {
+//         const response = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+//         console.log(response)
+//         const data =await response.json()
+//         console.log(data)
+//     } catch (error) {
+//         console.log("Error: ")
+//     }
      
- }
+//  }
 
-getAllUsers()
+// getAllUsers()
+
+// create getAllusers functionality with then and catch
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+.then((response)=>{
+    return response.json()
+})
+.then((data)=>{
+    console.log(data)
+})
+.catch((err)=>{
+    console.log(err)
+})
